@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "kupier-test",
+    "kupier-core",
+    "kupier-storage"
+]
