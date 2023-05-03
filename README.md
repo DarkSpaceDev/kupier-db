@@ -4,7 +4,7 @@ This is an implementation of a loosely-relational document database that has ACI
 
 ![](./docs/assets/kupier_belt.gif)
 
-Kupier, named after Kupier Belt which is named after Gerard P. Kuiper (who did not postulate that the Kupier Belt existed). 
+Kupier, named after Kupier Belt which is named after Gerard P. Kupier (who did not postulate that the Kupier Belt existed). 
 
 # Proposed Architecture?
 Do I even have one at this point?
