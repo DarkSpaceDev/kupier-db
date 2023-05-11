@@ -1,8 +1,7 @@
 use super::kv::Key;
 use super::kv::Val;
-use crate::err::Error;
+use crate::error::Error;
 use futures::lock::Mutex;
-use rocksdb::DBRecoveryMode;
 use rocksdb::DB;
 use rocksdb::{OptimisticTransactionDB, OptimisticTransactionOptions, ReadOptions, WriteOptions};
 use std::ops::Range;
