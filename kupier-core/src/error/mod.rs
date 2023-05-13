@@ -30,6 +30,12 @@ pub enum Error {
     /// The key being inserted in the transaction already exists
     #[error("The key being inserted already exists")]
     TxKeyAlreadyExists,
+
+    #[error("{0}")]
+    Parse(String),
+
+    #[error("{0}")]
+    Value(String),
 }
 
 impl From<rocksdb::Error> for Error {

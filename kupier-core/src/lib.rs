@@ -1,8 +1,7 @@
 #[macro_use]
 extern crate serde_derive;
 
-pub mod db;
-pub mod err;
+pub mod error;
 pub mod kupier;
 pub mod storage;
 
