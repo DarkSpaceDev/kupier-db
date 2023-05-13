@@ -1,0 +1,8 @@
+profile
+| WHERE owner->email_address = "some value"
+
+profile
+| WHERE owner.email_address = "some value"
+
+profile
+| WHERE owner.email_address = "some value" and ownerid = 7

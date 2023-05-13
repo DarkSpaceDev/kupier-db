@@ -1,0 +1,29 @@
+let $email_address = "wizzard@darkspace.dev";
+
+Profiles
+-- auto-join foriegn-keys for filtering
+-- does not extend and is only used for filtering
+-- 1. Load identities that match email_address = "wizzard@darkspace.dev"
+-- 2. Load profiles where ownerid = identity.id
+-- 3. Return results
+| WHERE owner->email_address = $email_address
+-- join based on arbitrary matching criteria
+-- this is for when there isn't a relationship present
+| JOIN Identities as ownerid_value on ownerid_value.email_address = $email_address
+-- will auto expand the values and be included in the result set data
+-- TODO: EXPAND or INCLUDE for the Keyword here?
+| EXPAND owner
+-- include 1-N Relationship, note that the alias (a) has a limited scope to just this expand
+-- and the field is actually called 'aliases' - if there is a collision between a relationship
+-- and a field on the record - the relationship wins.
+| EXPAND aliases as a on a.some_field = top_level_field and a.some_other_field = true
+-- include N-N Relationship Data
+| EXPAND connection[]->related
+-- extends the result set with the property of a 1-1 field
+| EXTEND email_address = owner->email_address
+-- | SUMMARIZE
+-- Will select all fields on the first level property, it will not recurse unless
+-- it is an object / document property directly on the Profile
+-- The second parameter will hint that all fields for the Identity will also need to be loaded and returned
+-- TODO: is this data put in a different field?
+| PROJECT ownerid_value.email_address, p.id

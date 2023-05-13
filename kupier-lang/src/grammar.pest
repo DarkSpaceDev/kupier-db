@@ -4,17 +4,22 @@ Query = { IdentifierStmt ~ AtomicClause* }
 
 IdentifierStmt = { IdentifierPath ~ IdentifierAlias? }
 IdentifierAlias = { ^"AS" ~ Identifier }
-IdentifierPath = ${ Identifier ~ ("." ~ Identifier)* }
+IdentifierPath = ${ Identifier ~ (IdentifierSeparator ~ Identifier)* }
 Identifier = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
+IdentifierSeparator = @{ RightArrow | DotOperator }
+ArrayRightArrow = ${ Array ~ RightArrow }
+Array = ${ "[]" }
+RightArrow = ${ "->" }
+DotOperator = ${ "." }
 
 // A single line clause
 AtomicClause = _{ Pipe ~ (WhereClause) }
 WhereClause = { ^"WHERE" ~ BinaryExpr }
 BinaryTerm = { IdentifierPath|ScalarValue|"(" ~ BinaryExpr ~ ")" }
-CompundBinarExpr = _{ BinaryExpr ~ (LogicalOp ~ BinaryExpr)* }
-BinaryExpr = { BinaryTerm ~ (ComparisonOp ~ BinaryTerm)+ }
-ComparisonOp = { And | Or | Lt | LtEq | Gt | GtEq | Ne | Eq }
-LogicalOp = { And | Or }
+BinaryExpr = { BinaryTerm ~ (BinaryOp ~ BinaryTerm)+ }
+BinaryOp = { ComparisonOp | LogicalOp }
+ComparisonOp = _{ Lt | LtEq | Gt | GtEq | Ne | Eq }
+LogicalOp = _{ And | Or }
 
 Lt = ${ "<" }
 LtEq = ${ "<=" }

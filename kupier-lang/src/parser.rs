@@ -1,7 +1,7 @@
 use pest::pratt_parser::PrattParser;
 use pest::{iterators::Pairs, Parser};
 
-use crate::ast::{BinaryExpr, IdentityValue, Node, QueryExpr, ScalarValue};
+use crate::ast::{BinaryExpr, BinaryOp, IdentityValue, Node, QueryExpr, ScalarValue};
 
 #[derive(Parser)]
 #[grammar = "grammar.pest"]
@@ -79,16 +79,48 @@ fn parse_binary_expr(pair: pest::iterators::Pair<Rule>) -> BinaryExpr {
         Rule::BinaryExpr => {
             let mut inner_rules = pair.into_inner();
             let lhs = parse_binary_term(inner_rules.next().unwrap());
-            let op = inner_rules.next().unwrap();
+            let op = parse_binary_op(inner_rules.next().unwrap());
             let rhs = parse_binary_term(inner_rules.next().unwrap());
+
+            let mut lhs_is_binaryexpr = false;
+            let mut rhs_is_binaryexpr = false;
+
+            if let Node::BinaryExpr(_) = &lhs {
+                lhs_is_binaryexpr = true;
+            }
+
+            if let Node::BinaryExpr(_) = &rhs {
+                rhs_is_binaryexpr = true;
+            }
+
+            if (op == BinaryOp::And || op == BinaryOp::Or)
+                && (!rhs_is_binaryexpr || !lhs_is_binaryexpr)
+            {
+                panic!("Invalid use of OR|AND operator. The left and right expressions must be boolan evaluations.")
+            }
 
             return BinaryExpr {
                 left: Box::new(lhs),
-                op: crate::ast::BinaryOp::Eq,
+                op,
                 right: Box::new(rhs),
             };
         }
         unknown => panic!("Unknown expression: {:?}", unknown),
+    }
+}
+
+fn parse_binary_op(pair: pest::iterators::Pair<Rule>) -> BinaryOp {
+    match pair.as_rule() {
+        Rule::BinaryOp => parse_binary_op(pair.into_inner().next().unwrap()),
+        Rule::And => BinaryOp::And,
+        Rule::Or => BinaryOp::Or,
+        Rule::Eq => BinaryOp::Eq,
+        Rule::Ne => BinaryOp::Ne,
+        Rule::Gt => BinaryOp::Gt,
+        Rule::GtEq => BinaryOp::GtEq,
+        Rule::Lt => BinaryOp::Lt,
+        Rule::LtEq => BinaryOp::LtEq,
+        unknown => panic!("Unknown operator: {:?}", unknown),
     }
 }
 
