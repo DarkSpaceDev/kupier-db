@@ -1,4 +1,3 @@
-use pest::pratt_parser::PrattParser;
 use pest::{iterators::Pairs, Parser};
 
 use crate::ast::{BinaryExpr, BinaryOp, IdentityValue, Node, QueryExpr, ScalarValue};
@@ -6,18 +5,6 @@ use crate::ast::{BinaryExpr, BinaryOp, IdentityValue, Node, QueryExpr, ScalarVal
 #[derive(Parser)]
 #[grammar = "grammar.pest"]
 pub struct KlangParser;
-
-lazy_static::lazy_static! {
-  static ref BINARY_EXPR_PARSER: PrattParser<Rule> = {
-      use pest::pratt_parser::{Assoc::*, Op};
-
-      // Precedence is defined lowest to highest
-      PrattParser::new()
-          // Addition and subtract have equal precedence
-          .op(Op::infix(Rule::Lt, Left) | Op::infix(Rule::LtEq, Left) | Op::infix(Rule::Gt, Left) | Op::infix(Rule::GtEq, Left) | Op::infix(Rule::Eq, Left) | Op::infix(Rule::Ne, Left))
-          .op(Op::infix(Rule::And, Left) | Op::infix(Rule::Or, Left))
-  };
-}
 
 pub fn parse_query(source: &str) -> std::result::Result<Vec<Node>, pest::error::Error<Rule>> {
     let mut ast = vec![];
@@ -85,12 +72,18 @@ fn parse_binary_expr(pair: pest::iterators::Pair<Rule>) -> BinaryExpr {
             let mut lhs_is_binaryexpr = false;
             let mut rhs_is_binaryexpr = false;
 
-            if let Node::BinaryExpr(_) = &lhs {
-                lhs_is_binaryexpr = true;
+            match &lhs {
+                Node::BinaryExpr(_) => {
+                    lhs_is_binaryexpr = true;
+                }
+                _ => (),
             }
 
-            if let Node::BinaryExpr(_) = &rhs {
-                rhs_is_binaryexpr = true;
+            match &rhs {
+                Node::BinaryExpr(_) => {
+                    rhs_is_binaryexpr = true;
+                }
+                _ => (),
             }
 
             if (op == BinaryOp::And || op == BinaryOp::Or)
@@ -215,12 +208,6 @@ fn parse_scalar_value(pair: pest::iterators::Pair<Rule>) -> Node {
     }
 }
 
-fn get_inner_pair(mut iterator: Pairs<Rule>) -> Pairs<Rule> {
-    assert_eq!(iterator.len(), 1);
-
-    iterator.next().unwrap().into_inner()
-}
-
 #[cfg(test)]
 pub mod tests {
     use crate::parser::KlangParser;
@@ -229,9 +216,15 @@ pub mod tests {
 
     use super::*;
 
+    fn get_inner_pair(mut iterator: Pairs<Rule>) -> Pairs<Rule> {
+        assert_eq!(iterator.len(), 1);
+
+        iterator.next().unwrap().into_inner()
+    }
+
     #[test]
     fn query_ok() {
-        let result = KlangParser::parse(Rule::Query, "abcd").unwrap();
+        let _ = KlangParser::parse(Rule::Query, "abcd").unwrap();
     }
 
     #[test]

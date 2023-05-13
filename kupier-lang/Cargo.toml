@@ -12,13 +12,11 @@ publish = true
 # pest_derive = { version = "2", default-features = false }
 pest = { version = "2" }
 pest_derive = { version = "2" }
-lazy_static = { version = "1" }
 
 # Stuff for serialization ...
-serde = "~1.0.130"
-serde_derive = "~1.0.130"
+serde = "1"
+serde_derive = "1"
 
 # Misc
-log = "0.4.14"
-derivative = "~2.2.0"
-kupier-core = { path = "../kupier-core" }
+log = "0.4"
+derivative = "2"

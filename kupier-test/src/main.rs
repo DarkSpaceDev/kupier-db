@@ -1,12 +1,10 @@
-use kupier_lang::parser::{KlangParser, Rule};
-use pest::Parser;
-use std::sync::atomic::AtomicUsize;
 use std::time::Instant;
 
 // https://stackoverflow.com/questions/61699050/how-can-i-make-my-rust-code-run-faster-in-parallel
 // https://stackoverflow.com/questions/68547268/cannot-borrow-data-in-an-arc-as-mutable
 
-static GLOBAL_THREAD_COUNT: AtomicUsize = AtomicUsize::new(0);
+// use std::sync::atomic::AtomicUsize;
+// static GLOBAL_THREAD_COUNT: AtomicUsize = AtomicUsize::new(0);
 
 #[tokio::main]
 async fn main() {
