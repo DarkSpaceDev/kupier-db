@@ -1,3 +1,5 @@
+// NOTE: The `Pairs` import is used, it's just not detected and throws a random warning.
+#[allow(unused_imports)]
 use pest::{iterators::Pairs, Parser};
 
 use crate::ast::{BinaryExpr, BinaryOp, IdentityValue, Node, QueryExpr, ScalarValue};
@@ -52,8 +54,6 @@ fn build_ast_from_query_expr(pair: pest::iterators::Pair<Rule>) -> Node {
                     invalid => panic!("Invalid Rule! {:?}", invalid),
                 }
             }
-
-            println!("Parsed ...");
 
             return Node::Query(query_expr);
         }

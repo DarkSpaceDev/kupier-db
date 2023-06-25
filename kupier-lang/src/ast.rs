@@ -1,9 +1,11 @@
+use serde_derive::{Deserialize, Serialize};
+
 /*
    NOTES: Missing Copy and Eq
 */
 
 /// Represents a binary operation for comparison or composition.
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub enum BinaryOp {
     Eq,
     Lt,
@@ -15,20 +17,20 @@ pub enum BinaryOp {
     Or,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub enum OrderByDirection {
     Asc,
     Desc,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct BinaryExpr {
     pub op: BinaryOp,
     pub left: Box<Node>,
     pub right: Box<Node>,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub enum ScalarValue {
     Int(i64),
     Decimal(f64),
@@ -39,26 +41,28 @@ pub enum ScalarValue {
     Undefined,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct IdentityValue {
     pub value: String,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub alias: Option<String>,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct OrderByClause {
     pub identity: IdentityValue,
     pub direction: OrderByDirection,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct QueryExpr {
     pub table: IdentityValue,
     pub filter: Vec<BinaryExpr>,
     pub order: Vec<OrderByClause>,
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub enum Node {
     Identity(IdentityValue),
     Scalar(ScalarValue),

@@ -43,3 +43,9 @@ impl From<rocksdb::Error> for Error {
         Error::Tx(e.to_string())
     }
 }
+
+impl From<regex::Error> for Error {
+    fn from(err: regex::Error) -> Self {
+        Error::Value(err.to_string())
+    }
+}

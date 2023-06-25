@@ -75,6 +75,7 @@ fn number_signed_int() {
 //     assert_eq!(expected, actual);
 // }
 
+#[allow(dead_code)]
 fn parses_not_ok(rule: Rule, input: &str) {
     let result = KlangParser::parse(rule, input);
 

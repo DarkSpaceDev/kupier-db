@@ -1,6 +1,8 @@
 // For Index Implementation:  https://github.com/facebook/rocksdb/wiki/Column-Families
 // Relational DB Example:     https://blog.petitviolet.net/post/2021-05-25/building-database-on-top-of-rocksdb-in-rust
 
+pub mod information_schema;
+
 pub struct Database {
     pub name: String,
     pub tables: Vec<Table>,
