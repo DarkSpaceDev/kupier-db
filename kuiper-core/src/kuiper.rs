@@ -10,4 +10,4 @@
 //     pub(crate) message: String,
 // }
 
-pub struct kuiperDB {}
+pub struct KuiperDB {}
