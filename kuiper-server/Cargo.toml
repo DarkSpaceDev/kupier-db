@@ -1,5 +1,5 @@
 [package]
-name = "kupier-server"
+name = "kuiper-server"
 version = "0.1.0"
 edition = "2021"
 publish = false
@@ -7,9 +7,9 @@ publish = false
 
 [dependencies]
 actix-web = "4"
-kupier-lang = { path = "../kupier-lang" }
-kupier-core = { path = "../kupier-core" }
-kupier-engine = { path = "../kupier-engine" }
+kuiper-lang = { path = "../kuiper-lang" }
+kuiper-core = { path = "../kuiper-core" }
+kuiper-engine = { path = "../kuiper-engine" }
 log = "0.4.14"
 log4rs = "1.0.0"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

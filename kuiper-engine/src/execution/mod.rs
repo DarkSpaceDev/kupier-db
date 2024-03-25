@@ -1,9 +1,9 @@
 use bson::doc;
 use bson::oid::ObjectId;
 
-use kupier_core::schema::information_schema;
-use kupier_core::{error::Result, storage::rocksdb::Datastore};
-use kupier_lang::ast::ScalarValue;
+use kuiper_core::schema::information_schema;
+use kuiper_core::{error::Result, storage::rocksdb::Datastore};
+use kuiper_lang::ast::ScalarValue;
 use serde::Deserialize;
 use serde_derive::Serialize;
 use std::pin::Pin;

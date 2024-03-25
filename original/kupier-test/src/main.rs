@@ -1,13 +1,13 @@
 mod calculator;
 
-use kupier_storage::engine::StorageEngine;
+use kuiper_storage::engine::StorageEngine;
 use std::io::{self, Read, Seek, SeekFrom};
 use std::sync::{ Arc, RwLock};
 use std::fs::File;
 use std::io::prelude::Write;
 use bson::{doc, Bson, Document};
 use chrono::Utc;
-use kupier_core::db::Database;
+use kuiper_core::db::Database;
 
 // Logging
 use log::LevelFilter;
@@ -28,7 +28,7 @@ fn to_bson(value: serde_json::Value) -> Document {
 async fn main() {
     println!("Running!");
     // main2();
-    StorageEngine::new("kupier.db").await;
+    StorageEngine::new("kuiper.db").await;
 }
 
 fn main2 () {

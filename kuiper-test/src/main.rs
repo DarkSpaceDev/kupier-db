@@ -1,5 +1,5 @@
-use kupier_core::storage::rocksdb::Datastore;
-use kupier_engine::{
+use kuiper_core::storage::rocksdb::Datastore;
+use kuiper_engine::{
     execution::{self, Executor, QueryPlan},
     plan::CollectionScan,
 };
@@ -116,7 +116,7 @@ async fn main() {
     test_builk_insert("test_collection3", &ex, 100000).await;
 
     loop {
-        let mut prompt = "kupier >> ";
+        let mut prompt = "kuiper >> ";
         if command.len() > 0 {
             prompt = "";
         }
@@ -147,7 +147,7 @@ async fn main() {
         println!();
 
         let now = Instant::now();
-        let result = kupier_lang::parser::parse_query(&local_command);
+        let result = kuiper_lang::parser::parse_query(&local_command);
         let microseconds = now.elapsed().as_micros();
 
         println!("Elapsed: {}μs", microseconds);

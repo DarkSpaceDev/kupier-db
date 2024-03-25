@@ -9,10 +9,10 @@ use crate::storage::engine::StorageEngine;
 
 pub mod Config {
     /// Used for all things relevant to data
-    pub const DEFAULT_DB_FILE: &str = "kupier.db";
+    pub const DEFAULT_DB_FILE: &str = "kuiper.db";
 
     /// Used for transactions and raft
-    pub const DEFAULT_DB_LOG_FILE: &str = "kupier.db.log";
+    pub const DEFAULT_DB_LOG_FILE: &str = "kuiper.db.log";
 }
 
 pub struct Database {

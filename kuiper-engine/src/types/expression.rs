@@ -1,12 +1,12 @@
 use bson::Bson;
-use kupier_core::error::{Error, Result};
+use kuiper_core::error::{Error, Result};
 
 use regex::Regex;
 use serde_derive::{Deserialize, Serialize};
 use std::fmt::{self, Display};
 use std::mem::replace;
 
-use crate::types::KupierObject;
+use crate::types::kuiperObject;
 
 /// An expression, made up of constants and operations
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -43,7 +43,7 @@ pub enum Expression {
 
 impl Expression {
     /// Evaluates an expression to a value, given an environment
-    pub fn evaluate(&self, row: Option<&KupierObject>) -> Result<Bson> {
+    pub fn evaluate(&self, row: Option<&kuiperObject>) -> Result<Bson> {
         use bson::Bson::*;
         Ok(match self {
             // Constant values
