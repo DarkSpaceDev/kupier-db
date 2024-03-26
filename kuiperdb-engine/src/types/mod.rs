@@ -1,5 +1,5 @@
 use bson::Document;
-use kuiper_core::error::Result;
+use kuiperdb_core::error::Result;
 
 pub mod expression;
 

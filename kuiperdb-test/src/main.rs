@@ -1,5 +1,5 @@
-use kuiper_core::storage::rocksdb::Datastore;
-use kuiper_engine::{
+use kuiperdb_core::storage::rocksdb::Datastore;
+use kuiperdb_engine::{
     execution::{self, Executor, QueryPlan},
     plan::CollectionScan,
 };
@@ -147,7 +147,7 @@ async fn main() {
         println!();
 
         let now = Instant::now();
-        let result = kuiper_lang::parser::parse_query(&local_command);
+        let result = kuiperdb_lang::parser::parse_query(&local_command);
         let microseconds = now.elapsed().as_micros();
 
         println!("Elapsed: {}μs", microseconds);

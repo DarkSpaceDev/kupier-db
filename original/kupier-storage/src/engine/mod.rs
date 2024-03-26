@@ -1,6 +1,6 @@
 use std::fs::OpenOptions;
 use tokio::fs::File;
-use kuiper_core::error::{Result, Error };
+use kuiperdb_core::error::{Result, Error };
 
 pub mod EngineConfig {
     /// Default Block Size in Bytes of 8KB

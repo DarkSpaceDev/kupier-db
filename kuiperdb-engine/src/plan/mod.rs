@@ -19,7 +19,7 @@ impl Display for QueryPlan {
 }
 
 impl QueryPlan {
-    pub fn from_ast(query_expr: &kuiper_lang::ast::QueryExpr) -> QueryPlan {
+    pub fn from_ast(query_expr: &kuiperdb_lang::ast::QueryExpr) -> QueryPlan {
         let collection_scan = Node::CollectionScan(CollectionScan {
             alias: query_expr.table.alias.clone(),
             collection: query_expr.table.value.clone(),

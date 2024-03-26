@@ -1,12 +1,12 @@
 use std::time::Instant;
 
 use actix_web::{post, web, App, HttpResponse, HttpServer, Responder};
-use kuiper_core::storage::rocksdb::Datastore;
-use kuiper_engine::{
+use kuiperdb_core::storage::rocksdb::Datastore;
+use kuiperdb_engine::{
     execution::{Executor, QueryResult},
     plan::QueryPlan,
 };
-use kuiper_lang::ast::Node;
+use kuiperdb_lang::ast::Node;
 use serde::Deserialize;
 use serde_derive::Serialize;
 use serde_json::Value;
@@ -42,7 +42,7 @@ async fn execute(ds: web::Data<Datastore>, command: web::Json<Command>) -> impl 
     let ex = Executor::new(dsr.clone());
 
     let now = Instant::now();
-    let result = kuiper_lang::parser::parse_query(&command.command);
+    let result = kuiperdb_lang::parser::parse_query(&command.command);
 
     let mut command_result = CommandResult {
         result: Option::None,
@@ -60,15 +60,15 @@ async fn execute(ds: web::Data<Datastore>, command: web::Json<Command>) -> impl 
                 // Execute Query
                 let query_plan = QueryPlan::from_ast(q);
                 match query_plan.0 {
-                    kuiper_engine::plan::Node::CollectionScan(x) => {
-                        let execution_plan = kuiper_engine::execution::QueryPlan {
+                    kuiperdb_engine::plan::Node::CollectionScan(x) => {
+                        let execution_plan = kuiperdb_engine::execution::QueryPlan {
                             collection: x.collection.clone(),
                             schema: x.schema.clone(),
                         };
 
                         let query_result: Result<
-                            kuiper_engine::execution::QueryResult,
-                            kuiper_core::error::Error,
+                            kuiperdb_engine::execution::QueryResult,
+                            kuiperdb_core::error::Error,
                         > = ex.execute_select(execution_plan).await;
 
                         if (query_result.is_err()) {

@@ -1,5 +1,5 @@
 use bson::Bson;
-use kuiper_core::error::{Error, Result};
+use kuiperdb_core::error::{Error, Result};
 
 use regex::Regex;
 use serde_derive::{Deserialize, Serialize};
