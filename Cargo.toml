@@ -1,9 +1,9 @@
 [workspace]
 
 members = [
-    "kuiper-core",
-    "kuiper-engine",
-    "kuiper-lang",
-    "kuiper-test",
-    "kuiper-server"
+    "kuiperdb-core",
+    "kuiperdb-engine",
+    "kuiperdb-lang",
+    "kuiperdb-test",
+    "kuiperdb-gateway"
 ]

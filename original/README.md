@@ -1,1 +1,1 @@
-# kuiper-rs
+# kuiperdb-rs

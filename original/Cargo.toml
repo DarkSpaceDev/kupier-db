@@ -1,7 +1,7 @@
 [workspace]
 
 members = [
-    "kuiper-test",
-    "kuiper-core",
-    "kuiper-storage"
+    "kuiperdb-test",
+    "kuiperdb-core",
+    "kuiperdb-storage"
 ]

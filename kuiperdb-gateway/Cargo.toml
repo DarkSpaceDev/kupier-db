@@ -1,5 +1,5 @@
 [package]
-name = "kuiper-server"
+name = "kuiperdb-gateway"
 version = "0.1.0"
 edition = "2021"
 publish = false
@@ -7,9 +7,9 @@ publish = false
 
 [dependencies]
 actix-web = "4"
-kuiper-lang = { path = "../kuiper-lang" }
-kuiper-core = { path = "../kuiper-core" }
-kuiper-engine = { path = "../kuiper-engine" }
+kuiperdb-lang = { path = "../kuiperdb-lang" }
+kuiperdb-core = { path = "../kuiperdb-core" }
+kuiperdb-engine = { path = "../kuiperdb-engine" }
 log = "0.4.14"
 log4rs = "1.0.0"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
