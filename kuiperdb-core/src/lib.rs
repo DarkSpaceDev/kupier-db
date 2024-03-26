@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 #[allow(unused_imports)]
 #[macro_use]
 extern crate serde_derive;

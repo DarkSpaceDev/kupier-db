@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 // SCHEMA:      4 bytes
 // Padding:     2 bytes
 // COLLECTION:  4 bytes

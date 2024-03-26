@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 use super::kv::Key;
 use super::kv::Val;
 use crate::error::Error;

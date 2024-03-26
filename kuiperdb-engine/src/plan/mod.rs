@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 use serde_derive::{Deserialize, Serialize};
 use std::{
     fmt::{self, Display},

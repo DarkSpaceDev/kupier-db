@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use kuiperdb_lang::parser::parse_query;
 

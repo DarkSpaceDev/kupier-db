@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 /// The key part of a key-value pair. An alias for [`Vec<u8>`].
 pub type Key = Vec<u8>;
 

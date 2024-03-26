@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 // pub type DBResult = Result<OkDBResult, DBError>;
 
 // #[derive(Debug, Clone, PartialEq, Eq, Hash)]

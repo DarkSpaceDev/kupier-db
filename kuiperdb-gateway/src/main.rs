@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 use std::time::Instant;
 
 use actix_web::{post, web, App, HttpResponse, HttpServer, Responder};

@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 // NOTE: The `Pairs` import is used, it's just not detected and throws a random warning.
 #[allow(unused_imports)]
 use pest::{iterators::Pairs, Parser};

@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------
+// (C) Copyright Travis Sharp <travis@darkspace.dev>.  All rights reserved.
+//--------------------------------------------------------------------------
+
 use kuiperdb_core::storage::rocksdb::Datastore;
 use kuiperdb_engine::{
     execution::{self, Executor, QueryPlan},
